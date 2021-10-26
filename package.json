@@ -9,5 +9,10 @@
     "clean": "rm -rf public",
     "deploy": "cp -a client/build/. public/",
     "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
+  },
+  "dependencies": {
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-icon": "^2.3.3",
+    "semantic-ui-react": "^2.0.4"
   }
 }
