@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+
+#  Playlist.create(
+#     name: "Happy",
+#   songs: "PL1VuYyZcPYIJTP3W_x0jq9olXviPQlOe1",
+#  favorite: true, user_id: 1)

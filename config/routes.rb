@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :playlists
-  # resources :users
+  resources :users
   get "/me", to: "users#show"
   post "/signup", to: "users#create"
   post "/login", to: "sessions#create"
