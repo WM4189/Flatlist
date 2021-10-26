@@ -9,7 +9,7 @@ ReactDOM.render(
   <BrowserRouter>
   <Route path="/">
     <App />
-    </Route>
+  </Route>
   </BrowserRouter>,
   document.getElementById('root')
 );

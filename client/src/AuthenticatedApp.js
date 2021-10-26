@@ -1,7 +1,9 @@
 import './App.css';
-import PlaylistContainer from './components/PlaylistContainer'
+import UserProfile from './components/UserProfile';
+import Discover from './components/Discover';
 import { Switch, Redirect, Route, NavLink } from 'react-router-dom'
-import { Header, Icon } from 'semantic-ui-react'
+import { Header, Icon, Menu } from 'semantic-ui-react'
+
 
 const linkStyles = {
   display: "inline-block",
@@ -15,6 +17,7 @@ const linkStyles = {
 
 
 function AuthenticatedApp({ currentUser, setCurrentUser }) {
+
   const handleLogout = () => {
     fetch(`/logout`, {
       method: 'DELETE'
@@ -29,24 +32,27 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
     <div className="App">
       <Header as='h2' icon>
 				<Icon name='music'/>
-				FlatLists
-				{/* <Header.Subheader >
-				Music
-				</Header.Subheader> */}
+				Flatlists
+				<Header.Subheader >
+				Discover something new.
+				</Header.Subheader>
       <nav>
-        <span>
+        <span name="header">
           <NavLink to="/profile" style={linkStyles}>Profile</NavLink>
-          <NavLink to="/discover" style={linkStyles}>Discover</NavLink>
+          <NavLink to="/discover" style={linkStyles}>Discovery</NavLink>
+          <NavLink to="/" style={linkStyles} onClick={handleLogout}>Logout</NavLink>
         </span>
         <br></br>
-        <span>Logged in as {currentUser.username} <button onClick={handleLogout}>Logout</button></span>
+        <span>Logged in as {currentUser.username} </span>
       </nav>
-      <Switch>
-        <Route path="/profile">
-          <PlaylistContainer currentUser={currentUser} />
-        </Route>
-        {/* <Redirect to="/discover" /> */}
-      </Switch>
+        <Switch>
+          <Route path="/profile">
+            <UserProfile username={currentUser.username} bio={currentUser.bio} playlists={currentUser.playlists} />
+          </Route>
+          <Route path="/discover">
+            <Discover />
+          </Route>
+        </Switch>
       </Header>
     </div>
   );

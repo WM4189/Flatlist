@@ -3,7 +3,7 @@ class PlaylistsController < ApplicationController
     before_action :authorize_user, only: [:update, :destroy]
   
     def index
-      render json: Playlist.all#, each_serializer: PlaylistIndexSerializer
+      render json: Playlist.all# , each_serializer: PlaylistIndexSerializer
     end
   
     def show

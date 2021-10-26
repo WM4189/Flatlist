@@ -1,10 +1,9 @@
 
 
-function PlaylistContainer({ currentUser }) {
-
+function PlaylistContainer() {
   return (
     <div>
-
+      These are where the youtube playlists will live
     </div>
   )
 }
