@@ -39,7 +39,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
       <nav>
         <span name="header">
           <NavLink to="/profile" style={linkStyles}>Profile</NavLink>
-          <NavLink to="/discover" style={linkStyles}>Discovery</NavLink>
+          <NavLink to="/discover" style={linkStyles}>Discover</NavLink>
           <NavLink to="/" style={linkStyles} onClick={handleLogout}>Logout</NavLink>
         </span>
         <br></br>
