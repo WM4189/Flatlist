@@ -30,30 +30,33 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
   }
   return (
     <div className="App">
-      <Header as='h2' icon>
+
+      <Header as='h5'icon>
 				<Icon name='music'/>
 				Flatlists
 				<Header.Subheader >
 				Discover something new.
 				</Header.Subheader>
+        <br/>
       <nav>
         <span name="header">
           <NavLink to="/profile" style={linkStyles}>Profile</NavLink>
           <NavLink to="/discover" style={linkStyles}>Discover</NavLink>
           <NavLink to="/" style={linkStyles} onClick={handleLogout}>Logout</NavLink>
         </span>
-        <br></br>
-        <span>Logged in as {currentUser.username} </span>
+        <br/>
+        <span>Logged in as {currentUser.email} </span>
       </nav>
-        <Switch>
+      </Header>
+      <Switch>
           <Route path="/profile">
-            <UserProfile username={currentUser.username} bio={currentUser.bio} playlists={currentUser.playlists} />
+            <UserProfile username={currentUser.username} bio={currentUser.bio} playlists={currentUser.playlists} id={currentUser.id} />
           </Route>
           <Route path="/discover">
-            <Discover />
+            <Discover id={currentUser.id} />
           </Route>
-        </Switch>
-      </Header>
+      </Switch>
+
     </div>
   );
 }

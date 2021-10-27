@@ -5,7 +5,7 @@ import Signup from './components/Signup'
 
 function UnauthenticatedApp({ setCurrentUser }) {
   return (
-    <div>
+    <div className="center">
     {/* <h1>..Logged Out</h1> */}
     <Switch>
       <Route exact path="/">

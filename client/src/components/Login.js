@@ -22,8 +22,8 @@ function Login({ setCurrentUser }) {
             // history.push('/playlists')
           })
         } else {
-          setCurrentUser({ username: "wm" })
-        //   history.push('/playlists')
+          setCurrentUser({ email: "Invalid Credentials, Please Reload" })
+          // history.push('/login')
           res.json().then(errors => {
             console.error(errors)
           })

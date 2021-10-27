@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+.landing {
+  margin: auto;
+  justify-content: center;
+  background-color: antiquewhite;
+}
+
+.center {
+  border: 5px solid #64645d;
+  text-align: center; 
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 200px;
+  background-color: rgb(218, 202, 182);
+
+  max-width: 500px;
+  }
