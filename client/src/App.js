@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import AuthenticatedApp from './AuthenticatedApp.js'
 import UnauthenticatedApp from './UnauthenticatedApp.js'
 import { BrowserRouter as Router } from 'react-router-dom'
+import 'semantic-ui-css/semantic.min.css'
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)

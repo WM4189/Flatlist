@@ -1,31 +1,38 @@
 import PlaylistContainer from "./PlaylistContainer"
-
+import {uid} from 'react-uid';
 import { useEffect, useState } from "react";
 
 function Discover(props) {
-    const [allPlaylists, setAllPlaylists] = useState([]);
+    const {allPlaylists, setAllPlaylists} = props
     const [toggle, setToggle] = useState(true);
     
     
-    function fetching() {
-        fetch("http://localhost:3000/playlists", {
-            headers: {
-            "Content-Type": "application/json",
-            credentials: 'include'
-            },
-        })  .then((r) => r.json())
-			.then((data) => {
-				setAllPlaylists(data)
-			})}
-        useEffect(() => {
-            console.log("Re-Running...");
-            fetching();
-        }, [!toggle]);
+    // function fetching() {
+    //     fetch("http://localhost:3000/playlists", {
+    //         headers: {
+    //         "Content-Type": "application/json",
+    //         credentials: 'include'
+    //         },
+    //     })  .then((r) => r.json())
+	// 		.then((data) => {
+	// 			setAllPlaylists(data)
+	// 		})}
+    //     useEffect(() => {
+    //         console.log("Re-Running...");
+    //         fetching();
+    //     }, [!toggle]);
+
+    useEffect(() => {
+        fetch("/playlists")
+          .then(res => res.json())
+          .then(allPlaylists => setAllPlaylists(allPlaylists))
+      },[setAllPlaylists])
 
     console.log(allPlaylists)
 
     const singlePlaylist = allPlaylists.map((playlist) => (
-        <PlaylistContainer 
+        <PlaylistContainer
+        key={uid(playlist)} 
         name={playlist.name} 
         songs={playlist.song} 
         favorite={playlist.favorite} 

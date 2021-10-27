@@ -1,8 +1,10 @@
 import './App.css';
+import { useEffect, useState } from "react";
 import UserProfile from './components/UserProfile';
 import Discover from './components/Discover';
 import { Switch, Redirect, Route, NavLink } from 'react-router-dom'
 import { Header, Icon, Menu } from 'semantic-ui-react'
+// import 'semantic-ui-css/semantic.min.css'
 
 
 const linkStyles = {
@@ -18,6 +20,8 @@ const linkStyles = {
 
 function AuthenticatedApp({ currentUser, setCurrentUser }) {
 
+  const [allPlaylists, setAllPlaylists] = useState([]);
+
   const handleLogout = () => {
     fetch(`/logout`, {
       method: 'DELETE'
@@ -32,10 +36,10 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
     <div className="App">
 
       <Header as='h5'icon>
-				<Icon name='music'/>
+				<Icon id="icon" name='music'/>
 				Flatlists
 				<Header.Subheader >
-				Discover something new.
+				Discover Something New
 				</Header.Subheader>
         <br/>
       <nav>
@@ -50,10 +54,10 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
       </Header>
       <Switch>
           <Route path="/profile">
-            <UserProfile username={currentUser.username} bio={currentUser.bio} playlists={currentUser.playlists} id={currentUser.id} />
+            <UserProfile setAllPlaylists={setAllPlaylists} allPlaylists={allPlaylists} username={currentUser.username} bio={currentUser.bio} playlists={currentUser.playlists} id={currentUser.id} />
           </Route>
           <Route path="/discover">
-            <Discover currentUser={currentUser} id={currentUser.id} />
+            <Discover setAllPlaylists={setAllPlaylists} allPlaylists={allPlaylists} currentUser={currentUser} id={currentUser.id} />
           </Route>
       </Switch>
 

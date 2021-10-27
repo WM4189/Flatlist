@@ -1,33 +1,41 @@
 import PlaylistContainer from "./PlaylistContainer";
 import { useEffect, useState } from "react";
+import {uid} from 'react-uid';
 
 function UserProfile (props) {
-    const { id, name, note_id, text, user_id, handleDelete } = props;
-    const [allPlaylists, setAllPlaylists] = useState([]);
-    const [toggle, setToggle] = useState(true);
-    
-    
-    function fetching() {
-        fetch("http://localhost:3000/playlists", {
-            headers: {
-            "Content-Type": "application/json",
-            credentials: 'include'
-            },
-        })  .then((r) => r.json())
-			.then((data) => {
-				setAllPlaylists(data)
-			})}
-        useEffect(() => {
-            console.log("Re-Running...");
-            fetching();
-        }, [!toggle]);
+    const { allPlaylists, setAllPlaylists, id, name, note_id, text, user_id, handleDelete } = props;
 
-    console.log(allPlaylists)
+    // const [toggle, setToggle] = useState(true);
+    
+    
+    // function fetching() {
+    //     fetch("http://localhost:3000/playlists", {
+    //         headers: {
+    //         "Content-Type": "application/json",
+    //         credentials: 'include'
+    //         },
+    //     })  .then((r) => r.json())
+	// 		.then((data) => {
+	// 			setAllPlaylists(data)
+	// 		})}
+    //     useEffect(() => {
+    //         console.log("Re-Running...");
+    //         fetching();
+    //     }, [!toggle]);
+
+        useEffect(() => {
+            fetch("/playlists")
+              .then(res => res.json())
+              .then(allPlaylists => setAllPlaylists(allPlaylists))
+          }, [])
+
+    // console.log(allPlaylists)
 
     const user_playlists = allPlaylists.filter(playlist => playlist.user.id === props.id)
 
     const current_playlists = user_playlists.map(playlist => (
-        <PlaylistContainer 
+        <PlaylistContainer
+        key={uid(playlist)}  
         creator={playlist.user.username} 
         name={playlist.name}
         current_user_id={props.id}
