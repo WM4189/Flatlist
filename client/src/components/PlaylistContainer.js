@@ -1,26 +1,18 @@
 import { useEffect, useState } from "react";
-import { useParams, useHistory, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import DiffProfile from "./DiffProfile";
 import { Switch, Redirect, Route, NavLink } from 'react-router-dom'
 import { Header, Icon, Menu } from 'semantic-ui-react'
 import UserProfile from "./UserProfile";
 
-const PlaylistContainer = (props) => {
+function PlaylistContainer (props) {
   // const history = useHistory();
-  const { creator, name, current_user_id, creator_id, creator_bio, creator_username, id, playlist, playlist_id} = props;
+  const { favorite, creator, name, current_user_id, creator_id, creator_bio, creator_username, id, playlist, playlist_id} = props;
   const [toggle, setToggle] = useState(true);
   const [selectedUser, setSelectedUser] = useState();
   const [allPlaylists, setAllPlaylists] = useState([]);
-
-
-  // function handleDelete(id) {
-	// 	fetch(`http://localhost:4000/playlists/${id}`, {
-	// 		method: "DELETE",
-	// 	})
-	// 	.then((resp) => resp.json())
-	// 	.then
-  //   (setToggle(!toggle));
-	// }
+  const [ isLiked, setLiked ] = useState(favorite); 
 
   const handleDelete = (id) => {
     return fetch(`/playlists/${id}`, {
@@ -29,14 +21,25 @@ const PlaylistContainer = (props) => {
         .then(res => {
           if (res.ok) {
             setAllPlaylists(allPlaylists.filter(playlist => playlist.id !== playlist_id))
-            // window.location.reload();
+            window.location.reload();
             // history.push('/')
           }
         })
   }
 
 function handleFavorite(id) {
-  console.log(playlist.songs)
+  setLiked(isLiked => !isLiked)
+  fetch(`/playlists/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({"favorite": isLiked})
+  })
+  .then(res => res.json())
+  .then(data =>{ 
+    console.log(data)
+  })
 }
 
 function routeToProfile(id) {
@@ -62,15 +65,14 @@ function routeToProfile(id) {
         <span>
           {current_user_id === id?
           <>
-          {/* <button> Update Playlist </button> */}
           <button onClick={() => handleDelete(playlist_id)}> Delete Playlist </button>
           </>
           :
           <>
-          <button onClick={() => handleFavorite(playlist_id)}>Favorite Playlist</button>
+          <button onClick={() => handleFavorite(playlist_id)}>{ isLiked ? "❤️" : "♡" }</button>
+  
           <button onClick={ () => {
               routeToProfile(creator_id) 
-      
             // <UserProfile username={creator.username} bio={creator.bio} playlists={creator.playlists} id={creator.id}/>
           }}> {creator_username}'s Profile </button>
           </>

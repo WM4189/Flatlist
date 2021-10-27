@@ -4,7 +4,6 @@ import UserProfile from './components/UserProfile';
 import Discover from './components/Discover';
 import { Switch, Redirect, Route, NavLink } from 'react-router-dom'
 import { Header, Icon, Menu } from 'semantic-ui-react'
-// import 'semantic-ui-css/semantic.min.css'
 
 
 const linkStyles = {

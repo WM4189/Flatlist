@@ -5,22 +5,6 @@ import { useEffect, useState } from "react";
 function Discover(props) {
     const {allPlaylists, setAllPlaylists} = props
     const [toggle, setToggle] = useState(true);
-    
-    
-    // function fetching() {
-    //     fetch("http://localhost:3000/playlists", {
-    //         headers: {
-    //         "Content-Type": "application/json",
-    //         credentials: 'include'
-    //         },
-    //     })  .then((r) => r.json())
-	// 		.then((data) => {
-	// 			setAllPlaylists(data)
-	// 		})}
-    //     useEffect(() => {
-    //         console.log("Re-Running...");
-    //         fetching();
-    //     }, [!toggle]);
 
     useEffect(() => {
         fetch("/playlists")
