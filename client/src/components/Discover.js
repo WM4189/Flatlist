@@ -24,11 +24,6 @@ function Discover(props) {
         id={playlist.user.id}
         playlist_id={playlist.id}
         playlist = {playlist}
-        creator={playlist.user}
-        creator_username={playlist.user.username}
-        creator_id={playlist.user.id}
-        creator_bio={playlist.user.bio}
-        // creator_playlists={}
         />
     ))
 

@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useHistory} from "react-router-dom";
-import DiffProfile from "./DiffProfile";
 import { Switch, Redirect, Route, NavLink } from 'react-router-dom'
 import { Header, Icon, Menu } from 'semantic-ui-react'
 import UserProfile from "./UserProfile";
 
 function PlaylistContainer (props) {
   // const history = useHistory();
-  const { favorite, creator, name, current_user_id, creator_id, creator_bio, creator_username, id, playlist, playlist_id} = props;
+  const { favorite, name, current_user_id, id, playlist, playlist_id} = props;
   const [toggle, setToggle] = useState(true);
   const [selectedUser, setSelectedUser] = useState();
   const [allPlaylists, setAllPlaylists] = useState([]);
@@ -42,22 +41,9 @@ function handleFavorite(id) {
   })
 }
 
-
-console.log(creator)
-
-
-function routeToProfile() {
-  <DiffProfile
-   creator={creator}
-  />
-}
-
-
-
-
   return (
     <div>
-      <h2>  {name}
+      <h2>  {playlist.user.username}'s {name}
       <br/>
         <span>
           {current_user_id === id?
@@ -67,13 +53,6 @@ function routeToProfile() {
           :
           <>
           <button onClick={() => handleFavorite(playlist_id)}>{ isLiked ? "❤️" : "♡" }</button>
-
-          <Link to="/diffprofile">
-          <button onClick={ () => {
-              routeToProfile() 
-            // <UserProfile username={creator.username} bio={creator.bio} playlists={creator.playlists} id={creator.id}/>
-          }}> {creator_username}'s Profile </button>
-          </Link>
           </>
           }
         </span>

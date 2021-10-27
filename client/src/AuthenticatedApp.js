@@ -1,7 +1,6 @@
 import './App.css';
 import { useEffect, useState } from "react";
 import UserProfile from './components/UserProfile';
-import DiffProfile from './components/DiffProfile';
 import Discover from './components/Discover';
 import { Switch, Redirect, Route, NavLink } from 'react-router-dom'
 import { Header, Icon, Menu } from 'semantic-ui-react'
@@ -32,6 +31,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
         }
       })
   }
+  
   return (
     <div className="App">
 
@@ -58,9 +58,6 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
           </Route>
           <Route path="/discover">
             <Discover setAllPlaylists={setAllPlaylists} allPlaylists={allPlaylists} currentUser={currentUser} id={currentUser.id} />
-          </Route>
-          <Route path="/diffprofile">
-            <DiffProfile/>
           </Route>
       </Switch>
 
