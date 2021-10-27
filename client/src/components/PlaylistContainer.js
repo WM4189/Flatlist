@@ -42,20 +42,17 @@ function handleFavorite(id) {
   })
 }
 
-function routeToProfile(id) {
 
-  console.log(creator)
-  // history.push('/profile')
-  // <DiffProfile  />
-  
-// useEffect(() => {         
-//   fetch(`/users/${id}`)           
-//   .then(res => res.json())           
-//   .then(selectedUser => setSelectedUser(selectedUser))       
-// }, [])
-} 
+console.log(creator)
 
-{/* <DiffProfile/> */}
+
+function routeToProfile() {
+  <DiffProfile
+   creator={creator}
+  />
+}
+
+
 
 
   return (
@@ -70,11 +67,13 @@ function routeToProfile(id) {
           :
           <>
           <button onClick={() => handleFavorite(playlist_id)}>{ isLiked ? "❤️" : "♡" }</button>
-  
+
+          <Link to="/diffprofile">
           <button onClick={ () => {
-              routeToProfile(creator_id) 
+              routeToProfile() 
             // <UserProfile username={creator.username} bio={creator.bio} playlists={creator.playlists} id={creator.id}/>
           }}> {creator_username}'s Profile </button>
+          </Link>
           </>
           }
         </span>
