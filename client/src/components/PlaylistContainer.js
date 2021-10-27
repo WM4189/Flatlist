@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
+import DiffProfile from "./DiffProfile";
+import { Switch, Redirect, Route, NavLink } from 'react-router-dom'
+import { Header, Icon, Menu } from 'semantic-ui-react'
+import UserProfile from "./UserProfile";
 
 function PlaylistContainer(props) {
-  const { creator, name, current_user_id, id, playlist_id} = props;
+  const { creator, name, current_user_id, creator_id, creator_bio, creator_username, id, playlist, playlist_id} = props;
   const [toggle, setToggle] = useState(true);
+  const [selectedUser, setSelectedUser] = useState();
   // let history = useHistory();
 
   function handleDelete(id) {
@@ -15,28 +20,49 @@ function PlaylistContainer(props) {
     (setToggle(!toggle));
 	}
 
+function handleFavorite(id) {
+  console.log(playlist.songs)
+}
+
+function routeToProfile(id) {
+  console.log(creator)
+  history.push('/profile')
+  <DiffProfile  />
+  
+// useEffect(() => {         
+//   fetch(`/users/${id}`)           
+//   .then(res => res.json())           
+//   .then(selectedUser => setSelectedUser(selectedUser))       
+// }, [])
+} 
+{/* <DiffProfile/> */}
+
 
   return (
     <div>
-      <h2> Title: {name}
+      <h2>  {name}
       <br/>
         <span>
           {current_user_id == id?
           <>
-          <button> Update Playlist </button>
+          {/* <button> Update Playlist </button> */}
           <button onClick={() => handleDelete(playlist_id)}> Delete Playlist </button>
           </>
           :
           <>
-          <button>Favorite Playlist</button>
-          <button> {creator}'s Profile </button>
+          <button onClick={() => handleFavorite(playlist_id)}>Favorite Playlist</button>
+          <button onClick={
+            () => 
+            routeToProfile(creator_id)
+            // <UserProfile username={creator.username} bio={creator.bio} playlists={creator.playlists} id={creator.id}/>
+            }> {creator}'s Profile </button>
           </>
           }
         </span>
       </h2>
-
-      <iframe width="720" height="405" src="https://www.youtube.com/embed/?listType=playlist&list=PLLGmt3bXA_93pvHgKm7dbEvW410pDFKKl" frameBorder="0" allowFullScreen />
-
+      <div className="framecontainer" >
+        <iframe className="iframe" width="720" height="405" src={`https://www.youtube.com/embed/?listType=playlist&list=${playlist.songs}`} frameBorder="0" allowFullScreen />
+      </div>
     </div>
   )
 }

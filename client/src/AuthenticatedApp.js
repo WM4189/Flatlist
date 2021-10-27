@@ -53,7 +53,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
             <UserProfile username={currentUser.username} bio={currentUser.bio} playlists={currentUser.playlists} id={currentUser.id} />
           </Route>
           <Route path="/discover">
-            <Discover id={currentUser.id} />
+            <Discover currentUser={currentUser} id={currentUser.id} />
           </Route>
       </Switch>
 

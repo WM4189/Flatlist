@@ -33,6 +33,7 @@ function UserProfile (props) {
         current_user_id={props.id}
         id={playlist.user.id}
         playlist_id={playlist.id}
+        playlist = {playlist}
         />
     ))
 

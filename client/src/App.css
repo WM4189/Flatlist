@@ -53,3 +53,10 @@
 
   max-width: 500px;
   }
+
+  .framecontainer {
+    /* background-color: rgb(0, 0, 0); */
+  }
+  .iframe {
+    border: 20px solid #636cbe;
+  }
