@@ -22,7 +22,7 @@ function Login({ setCurrentUser }) {
             // history.push('/playlists')
           })
         } else {
-          setCurrentUser({ email: "Invalid Credentials, Please Reload" })
+          setCurrentUser({ email: ": (Invalid Credentials) Login or Signup to View your Profile" })
           // history.push('/login')
           res.json().then(errors => {
             console.error(errors)

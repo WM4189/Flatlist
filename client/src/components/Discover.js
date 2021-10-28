@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 function Discover(props) {
     const {allPlaylists, setAllPlaylists} = props
-    const [toggle, setToggle] = useState(true);
+    // const [toggle, setToggle] = useState(true);
 
     useEffect(() => {
         fetch("/playlists")
@@ -29,8 +29,10 @@ function Discover(props) {
 
     return(
         <div>
-            <h1>Discover your next playlist here. </h1>
-            <h2>Feel free to browse new Playlists here from both our Users and our Admins!</h2>
+              {/* <h1>Discover your next playlist here</h1>
+            <h2>Feel free to browse new Playlists here from both our Users and our Admins!</h2> */}
+            <em><h1>Music speaks volumes about your character </h1></em>
+            <br/>
             {singlePlaylist}
         </div>
         )
