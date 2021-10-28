@@ -35,13 +35,13 @@ class PlaylistsController < ApplicationController
     private
 
   def playlist_params
-    params.permit(:name, :songs, :favorite, :user_id)
+    params.permit(:name, :songs, :favorite, :user_id, :likes, :dislikes)
   end
 
   def set_playlist
     @playlist = Playlist.find(params[:id])
   end
-
+  
   def authorize_user
     user_can_modify = current_user.admin? || @playlist.user == current_user
     if !user_can_modify
