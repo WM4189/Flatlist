@@ -21,6 +21,12 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
 
   const [allPlaylists, setAllPlaylists] = useState([]);
 
+  useEffect(() => {
+    fetch("/playlists")
+      .then(res => res.json())
+      .then(allPlaylists => setAllPlaylists(allPlaylists))
+  },[setAllPlaylists])
+
   const handleLogout = () => {
     fetch(`/logout`, {
       method: 'DELETE'

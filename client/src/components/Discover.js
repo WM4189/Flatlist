@@ -6,13 +6,13 @@ function Discover(props) {
     const {allPlaylists, setAllPlaylists} = props
     // const [toggle, setToggle] = useState(true);
 
-    useEffect(() => {
-        fetch("/playlists")
-          .then(res => res.json())
-          .then(allPlaylists => setAllPlaylists(allPlaylists))
-      },[setAllPlaylists])
+    // useEffect(() => {
+    //     fetch("/playlists")
+    //       .then(res => res.json())
+    //       .then(allPlaylists => setAllPlaylists(allPlaylists))
+    //   },[setAllPlaylists])
 
-    console.log(allPlaylists)
+    // console.log(allPlaylists)
 
     const singlePlaylist = allPlaylists.map((playlist) => (
         <PlaylistContainer
@@ -24,6 +24,8 @@ function Discover(props) {
         id={playlist.user.id}
         playlist_id={playlist.id}
         playlist = {playlist}
+        allPlaylists={allPlaylists}
+        setAllPlaylists={setAllPlaylists}
         />
     ))
 

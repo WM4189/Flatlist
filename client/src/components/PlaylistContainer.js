@@ -8,10 +8,10 @@ import UserProfile from "./UserProfile";
 
 function PlaylistContainer (props) {
   // const history = useHistory();
-  const { favorite, name, current_user_id, id, playlist, playlist_id} = props;
+  const {allPlaylists, setAllPlaylists, favorite, name, current_user_id, id, playlist, playlist_id} = props;
   const [toggle, setToggle] = useState(true);
   const [selectedUser, setSelectedUser] = useState();
-  const [allPlaylists, setAllPlaylists] = useState([]);
+  // const [allPlaylists, setAllPlaylists] = useState([]);
   const [ isLiked, setLiked ] = useState(favorite); 
   const [newLikes, setNewLikes] = useState(playlist.likes)
   const [newDisLikes, setNewDisLikes] = useState(playlist.dislikes)
@@ -55,7 +55,6 @@ function incrementDisLikes(id) {
         .then(res => {
           if (res.ok) {
             setAllPlaylists(allPlaylists.filter(playlist => playlist.id !== playlist_id))
-            window.location.reload();
           }
         })
   }

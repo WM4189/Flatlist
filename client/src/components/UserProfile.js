@@ -7,11 +7,11 @@ function UserProfile (props) {
     const [playlistData, setPlaylist] = useState([])
     const [playlistName, setName] = useState([])
 
-        useEffect(() => {
-            fetch("/playlists")
-              .then(res => res.json())
-              .then(allPlaylists => setAllPlaylists(allPlaylists))
-          }, [setAllPlaylists])
+        // useEffect(() => {
+        //     fetch("/playlists")
+        //       .then(res => res.json())
+        //       .then(allPlaylists => setAllPlaylists(allPlaylists))
+        //   }, [setAllPlaylists])
 
         //   (:name, :songs, :favorite, :user_id, :likes, :dislikes)
   const handleSubmit = () => {
@@ -49,6 +49,8 @@ function UserProfile (props) {
         id={playlist.user.id}
         playlist_id={playlist.id}
         playlist = {playlist}
+        allPlaylists={allPlaylists}
+        setAllPlaylists={setAllPlaylists}
         />
     ))
     
