@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 function Signup({ setCurrentUser }) {
 //   const history = useHistory()
   const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [bio, setBio] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
   
@@ -17,6 +19,8 @@ function Signup({ setCurrentUser }) {
       },
       body: JSON.stringify({
         username,
+        email,
+        bio,
         password,
         password_confirmation: passwordConfirmation
       })
@@ -49,6 +53,32 @@ function Signup({ setCurrentUser }) {
             name="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+          />
+        </p>
+        <p>
+          <label 
+            htmlFor="email"
+          >
+            Email
+          </label>
+          <input
+            type="text"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </p>
+        <p>
+          <label 
+            htmlFor="bio"
+          >
+            Bio
+          </label>
+          <input
+            type="text"
+            name="bio"
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
           />
         </p>
         <p>
