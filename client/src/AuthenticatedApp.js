@@ -2,8 +2,8 @@ import './App.css';
 import { useEffect, useState } from "react";
 import UserProfile from './components/UserProfile';
 import Discover from './components/Discover';
-import { Switch, Redirect, Route, NavLink } from 'react-router-dom'
-import { Header, Icon, Menu } from 'semantic-ui-react'
+import { Switch, Route, NavLink } from 'react-router-dom'
+import { Header, Icon} from 'semantic-ui-react'
 
 
 const linkStyles = {
@@ -60,10 +60,10 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
       </Header>
       <Switch>
           <Route path="/profile">
-            <UserProfile setAllPlaylists={setAllPlaylists} allPlaylists={allPlaylists} username={currentUser.username} bio={currentUser.bio} playlists={currentUser.playlists} id={currentUser.id} />
+            <UserProfile setAllPlaylists={setAllPlaylists} allPlaylists={allPlaylists} bio={currentUser.bio} id={currentUser.id} />
           </Route>
           <Route path="/discover">
-            <Discover setAllPlaylists={setAllPlaylists} allPlaylists={allPlaylists} currentUser={currentUser} id={currentUser.id} />
+            <Discover setAllPlaylists={setAllPlaylists} allPlaylists={allPlaylists} id={currentUser.id} />
           </Route>
       </Switch>
 

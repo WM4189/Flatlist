@@ -1,24 +1,16 @@
 import {uid} from 'react-uid';
-import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { useHistory} from "react-router-dom";
-import { Switch, Redirect, Route, NavLink } from 'react-router-dom'
-import { Header, Icon, Menu } from 'semantic-ui-react'
-import UserProfile from "./UserProfile";
+import { useState } from "react";
+// import { useHistory} from "react-router-dom";
+
 
 function PlaylistContainer (props) {
   // const history = useHistory();
   const {allPlaylists, setAllPlaylists, favorite, name, current_user_id, id, playlist, playlist_id} = props;
   const [toggle, setToggle] = useState(true);
-  const [selectedUser, setSelectedUser] = useState();
-  // const [allPlaylists, setAllPlaylists] = useState([]);
   const [ isLiked, setLiked ] = useState(favorite); 
-  const [newLikes, setNewLikes] = useState(playlist.likes)
-  const [newDisLikes, setNewDisLikes] = useState(playlist.dislikes)
 
     function incrementLikes(id) {
     const likess = ++playlist.likes
-
     fetch(`/playlists/${id}`, {
           method: "PATCH",
           headers: {
@@ -34,7 +26,6 @@ function PlaylistContainer (props) {
 
 function incrementDisLikes(id) {
   const dislike = ++playlist.dislikes
-
   fetch(`/playlists/${id}`, {
         method: "PATCH",
         headers: {
@@ -51,13 +42,7 @@ function incrementDisLikes(id) {
   const handleDelete = (id) => {
     return fetch(`/playlists/${id}`, {
           method: 'DELETE'
-        })
-        .then(res => {
-          if (res.ok) {
-            setAllPlaylists(allPlaylists.filter(playlist => playlist.id !== playlist_id))
-          }
-        })
-  }
+        }).then(setAllPlaylists(allPlaylists.filter(playlist => playlist.id !== playlist_id)))}
 
 function handleFavorite(id) {
   setLiked(!isLiked)
@@ -68,10 +53,6 @@ function handleFavorite(id) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({"favorite": likedd})
-  })
-  .then(res => res.json())
-  .then(data =>{ 
-    console.log(data)
   })
 }
 

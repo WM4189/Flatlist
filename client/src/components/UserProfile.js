@@ -1,19 +1,12 @@
 import PlaylistContainer from "./PlaylistContainer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {uid} from 'react-uid';
 
 function UserProfile (props) {
-    const { allPlaylists, setAllPlaylists, id, name, note_id, text, user_id, handleDelete } = props;
+    const { allPlaylists, setAllPlaylists, bio} = props;
     const [playlistData, setPlaylist] = useState([])
     const [playlistName, setName] = useState([])
 
-        // useEffect(() => {
-        //     fetch("/playlists")
-        //       .then(res => res.json())
-        //       .then(allPlaylists => setAllPlaylists(allPlaylists))
-        //   }, [setAllPlaylists])
-
-        //   (:name, :songs, :favorite, :user_id, :likes, :dislikes)
   const handleSubmit = () => {
     return fetch("/playlists", {
       method: 'POST',
@@ -58,12 +51,9 @@ function UserProfile (props) {
         <>  
         <div>
             <h2> Welcome </h2>
-                {/* <br/> */}
-            <p> {props.bio} </p>
+            <h5> {bio} </h5>
                 <br/>
-            {/* <h5> <button> New Playlist </button> </h5> */}
             <form onSubmit={handleSubmit}>
-      {/* <h1>New Playlist</h1> */}
       <p>
         <em><label htmlFor="New Playlist">Input Playlist ID</label></em>
         <input
@@ -72,7 +62,7 @@ function UserProfile (props) {
           onChange={(e) => setPlaylist(e.target.value)}
           name="New Playlist"
         />
-        <em><label htmlFor="New Playlist Name">Input Playlist Name</label></em>
+        <em><label htmlFor="New Playlist Name"> Input Playlist Name</label></em>
         <input
           type="text"
           value={playlistName}
@@ -89,8 +79,6 @@ function UserProfile (props) {
             <div className="user">
             {current_playlists} 
             </div>
-            {/* <h5> {props.username}'s Favorites: </h5> */}
-
         </div>
         </>
     )

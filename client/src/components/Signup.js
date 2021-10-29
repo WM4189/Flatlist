@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { useHistory, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+// import { useHistory} from 'react-router-dom'
 
 function Signup({ setCurrentUser }) {
 //   const history = useHistory()
